@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { usePostLoginMutation, usePostSignUpMutation } from "../state/api";
-
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Login = ({ setUser, setSecret }) => {
-  console.log(process.env.BASE_URL);
-
   const [isRegister, setIsRegister] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,21 +12,44 @@ const Login = ({ setUser, setSecret }) => {
 
   const handleLogin = () => {
     triggerLogin({ username, password });
+    // toast.success("Login successfully");
   };
 
   const handleRegister = () => {
     triggerSignUp({ username, password });
+    toast.success("Sign up successfully");
   };
 
   useEffect(() => {
     if (resultLogin.data?.response) {
       setUser(username);
       setSecret(password);
+      toast.success("Login successfully");
     }
   }, [resultLogin.data]); // eslint-disable-line
 
   return (
     <div className="login-page">
+      <div
+        style={{
+          margin: "24px 16px",
+          padding: 24,
+          minHeight: 280,
+          // background: colorBgContainer,
+        }}
+      >
+        <ToastContainer
+          position="top-right"
+          autoClose={250}
+          hideProgressBar={false}
+          newestOnTop={true}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          theme="light"
+        />
+      </div>
       <div className="login-container">
         <h2 className="title">CHATGPT APP</h2>
         <p
