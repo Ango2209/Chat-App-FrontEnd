@@ -12,7 +12,7 @@ import AiAssist from "../customMessageForms/AiAssist";
 
 const Chat = ({ user, secret }) => {
   const chatProps = useMultiChatLogic(
-    "0c646921-1d5a-4d1b-9fa9-3c1a5fc4e228",
+    "4d6904b6-4466-49f9-9fa4-c2152a5de920",
     user,
     secret
   );
